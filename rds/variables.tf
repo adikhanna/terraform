@@ -1,45 +1,40 @@
 variable "environment" {
-  description = "The environment"
+  default = "prod"
 }
 
 variable "subnet_ids" {
-  type        = "list"
-  description = "Subnet ids"
+  type    = list
+  default = ["subnet-0c9ceeab84ec02f67", "subnet-09cd524c6e8eb8263"]
 }
 
 variable "vpc_id" {
-  description = "The VPC id"
+  default = "vpc-0622b71126a6771e4"
 }
 
-//variable "allowed_security_group_id" {
-//  description = "The allowed security group id to connect on RDS"
-//}
+variable "allowed_security_group_id" {
+  default = "sg-04a2bab962688abb1"
+}
 
 variable "allocated_storage" {
   default     = "20"
-  description = "The storage size in GB"
 }
 
 variable "instance_class" {
-  description = "The instance type"
+  default = "db.t3.micro"
 }
 
 variable "multi_az" {
   default     = false
-  description = "Muti-az allowed?"
 }
 
 variable "database_name" {
-  default     = "dummy_data"
-  description = "The database name"
+  default     = "appdb"
 }
 
 variable "database_username" {
-  default     = "admin"
-  description = "The username of the database"
+  default     = "appuser"
 }
 
 variable "database_password" {
-  default     = "testing123"
-  description = "The password of the database"
+  default     = "updata-password"
 }

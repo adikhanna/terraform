@@ -18,7 +18,6 @@ variable "ecs-key-pair-name" {}
 //----------------------------------------------------------------------
 
 variable "autoscaling-group-name" {
-    description = "The name for the autoscaling group for the cluster."
     default     = "updata-ecs-asg"
 }
 
@@ -44,16 +43,13 @@ variable "health-check-grace-period" {
 //----------------------------------------------------------------------
 
 variable "launch-configuration-name" {
-    description = "The name for the autoscaling group for the cluster."
     default = "updata-ecs-launch-configuration"
 }
 
 variable "image-id" {
-    description = "The name for the autoscaling group for the cluster."
     default = "ami-d61027ad"
 }
 
 variable "instance-type" {
-    description = "The name for the autoscaling group for the cluster."
     default = "t2.medium"
 }

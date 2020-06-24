@@ -13,11 +13,11 @@ environment specific variables
 ======*/
 
 variable "production_database_name" {
-  description = "app-db"
+  description = "appdb"
 }
 
 variable "production_database_username" {
-  description = "updata-app"
+  description = "appuser"
 }
 
 variable "production_database_password" {

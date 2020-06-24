@@ -6,8 +6,8 @@ RDS
 resource "aws_db_subnet_group" "rds_subnet_group" {
   name        = "${var.environment}-rds-subnet-group"
   description = "RDS subnet group"
-  subnet_ids  = ["${var.subnet_ids}"]
-  tags {
+  subnet_ids  = "${var.subnet_ids}"
+  tags = {
     Environment = "${var.environment}"
   }
 }
@@ -18,7 +18,7 @@ resource "aws_security_group" "db_access_sg" {
   name        = "${var.environment}-db-access-sg"
   description = "Allow access to RDS"
 
-  tags {
+  tags = {
     Name        = "${var.environment}-db-access-sg"
     Environment = "${var.environment}"
   }
@@ -28,7 +28,7 @@ resource "aws_security_group" "rds_sg" {
   name = "${var.environment}-rds-sg"
   description = "${var.environment} Security Group"
   vpc_id = "${var.vpc_id}"
-  tags {
+  tags = {
     Name = "${var.environment}-rds-sg"
     Environment =  "${var.environment}"
   }
@@ -61,8 +61,8 @@ resource "aws_security_group" "rds_sg" {
 resource "aws_db_instance" "rds" {
   identifier             = "${var.environment}-database"
   allocated_storage      = "${var.allocated_storage}"
-  engine                 = "mysql"
-  engine_version         = "5.7"
+  engine                 = "postgres"
+  engine_version         = "10.6"
   instance_class         = "${var.instance_class}"
   multi_az               = "${var.multi_az}"
   name                   = "${var.database_name}"
@@ -71,7 +71,7 @@ resource "aws_db_instance" "rds" {
   db_subnet_group_name   = "${aws_db_subnet_group.rds_subnet_group.id}"
   vpc_security_group_ids = ["${aws_security_group.rds_sg.id}"]
   skip_final_snapshot    = true
-  tags {
+  tags = {
     Environment = "${var.environment}"
   }
 }
