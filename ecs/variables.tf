@@ -1,6 +1,5 @@
 
 variable "ecs-target-group-arn" {}
-
 variable "vpc-id" {}
 variable "subnet-id-1" {}
 variable "subnet-id-2" {}
@@ -42,6 +41,6 @@ variable "load-balancer-name" {
 }
 
 variable "target-group-name" {
-    description = "The name for the autoscaling group for the cluster."
+    description = "The name for the target group for the cluster."
     default     = "updata-ecs-target-group"
 }

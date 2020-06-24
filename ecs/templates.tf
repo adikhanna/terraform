@@ -1,5 +1,5 @@
-resource "template_file" "demo-template" {
-  template = "${file("./ecs/wordpress.json")}"
+resource "template_file" "updata-app-template" {
+  template = "${file("./ecs/task_definition.json")}"
 
   vars {
     db_host     = "${var.rds-url}"
