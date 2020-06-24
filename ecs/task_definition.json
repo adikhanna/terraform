@@ -1,0 +1,36 @@
+[
+    {
+      "cpu": 256,
+      "image": "616690186094.dkr.ecr.us-east-2.amazonaws.com/app:latest",
+      "memory": 512,
+      "name": "app",
+      "networkMode": "awsvpc",
+      "portMappings": [
+        {
+          "containerPort": 5000,
+          "hostPort": 5000,
+          "protocol": "tcp"
+        }
+      ],
+      "command": ["/bin/sh -c 'make run'"],
+      "entryPoint": ["sh", "-c"],
+      "environment": [
+        {
+            "name": "DB_HOST",
+            "value": "${db_host}"
+        },
+        {
+            "name": "DB_USER",
+            "value": "${db_user}"
+        },
+        {
+            "name": "DB_PASSWORD",
+            "value": "${db_password}"
+        },
+        {
+            "name": "DB_NAME",
+            "value": "${db_name}"
+        }
+        ]
+    }
+  ]

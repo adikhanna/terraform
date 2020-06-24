@@ -1,18 +1,50 @@
 
-variable "ecs-target-group-arn" {}
-variable "vpc-id" {}
-variable "subnet-id-1" {}
-variable "subnet-id-2" {}
-variable "security-group-id" {}
-variable "rds-security-group" {}
-variable "rds-url" {}
-variable "rds-username" {}
-variable "rds-password" {}
-variable "rds-dbname" {}
-variable "efs-subnet-ids" {}
+variable "vpc-id" {
+  default = "vpc-0622b71126a6771e4"
+}
+
+variable "subnet-id-1" {
+    default = "subnet-0606c01644116d9ea"
+}
+
+variable "subnet-id-2" {
+    default = "subnet-09cd524c6e8eb8263"
+}
+
+variable "subnet-id-3" {
+    default = "subnet-0c9ceeab84ec02f67"
+}
+
+variable "security-group-id" {
+    default = "sg-04a2bab962688abb1"
+}
+
+variable "rds-security-group" {
+    default = "sg-04a2bab962688abb1"
+}
+
+variable "rds-url" {
+    default = "production-database.ckpzaxvs5lo5.us-east-2.rds.amazonaws.com"
+}
+
+variable "rds-username" {
+    default = "appuser"
+}
+
+variable "rds-password" {
+    default = "updata-password"
+}
+
+variable "rds-dbname" {
+    default = "appdb"
+}
 
 variable "ecs-alb-target" {
     default = "updata-ecs-target-group"
+}
+
+variable "ecs-target-group-arn" {
+    default = ""
 }
 
 variable "ecs-cluster-name" {

@@ -33,8 +33,16 @@ resource "aws_security_group" "vpc-security-group" {
         protocol = "-1"
         cidr_blocks = ["0.0.0.0/0"]
     }
+
+    ingress {
+        protocol        = "tcp"
+        from_port       = 5000
+        to_port         = 5000
+        cidr_blocks = ["0.0.0.0/0"]
+  }
+
 }
 
 output "security-group-id" {
-  value = "${aws_security_group.updata-vpc-security-group.id}"
+  value = "${aws_security_group.vpc-security-group.id}"
 }
