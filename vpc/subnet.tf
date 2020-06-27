@@ -71,6 +71,6 @@ output "subnet3-cidr" {
   value = "${aws_subnet.updata-vpc-subnet3.cidr_block}"
 }
 
-output "subnet34cidr" {
+output "subnet4-cidr" {
   value = "${aws_subnet.updata-vpc-subnet4.cidr_block}"
 }
