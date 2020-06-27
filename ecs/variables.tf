@@ -12,7 +12,11 @@ variable "subnet-id-2" {
 }
 
 variable "subnet-id-3" {
-    default = "subnet-0c9ceeab84ec02f67"
+    default = "subnet-05090e1ba178aa891"
+}
+
+variable "subnet-id-4" {
+    default = "subnet-0afb1af57fe96aefc"
 }
 
 variable "security-group-id" {
@@ -43,10 +47,6 @@ variable "ecs-alb-target" {
     default = "updata-ecs-target-group"
 }
 
-variable "ecs-target-group-arn" {
-    default = ""
-}
-
 variable "ecs-cluster-name" {
     default = "updata-ecs-cluster"
 }
@@ -62,10 +62,6 @@ variable "ecs-service-name" {
 variable "ecs-load-balancer-name" {
     default = "updata-ecs-load-balancer"
 }
-
-//----------------------------------------------------------------------
-// Application Load Balancer Variables
-//----------------------------------------------------------------------
 
 variable "load-balancer-name" {
     description = "The name for the autoscaling group for the cluster."

@@ -50,8 +50,6 @@ module "ecs" {
     subnet-id-2                 = "${module.vpc.subnet2-id}"
     subnet-id-3                 = "${module.vpc.subnet3-id}"
     ecs-cluster-name            = "${var.ecs-cluster-name}"
-    #ecs-load-balancer-name     = "${module.ec2.ecs-load-balancer-name}"
-    ecs-target-group-arn        = "${module.ecs.ecs-target-group-arn}"
     ecs-service-role-arn        = "${module.iam.ecs-service-role-arn}"
 
     providers = {

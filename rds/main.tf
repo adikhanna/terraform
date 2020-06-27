@@ -1,8 +1,3 @@
-/*====
-RDS
-======*/
-
-/* subnet used by rds */
 resource "aws_db_subnet_group" "rds_subnet_group" {
   name        = "${var.environment}-rds-subnet-group"
   description = "RDS subnet group"
@@ -12,7 +7,6 @@ resource "aws_db_subnet_group" "rds_subnet_group" {
   }
 }
 
-/* Security Group for resources that want to access the Database */
 resource "aws_security_group" "db_access_sg" {
   vpc_id      = "${var.vpc_id}"
   name        = "${var.environment}-db-access-sg"
