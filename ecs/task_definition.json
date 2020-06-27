@@ -12,6 +12,14 @@
           "protocol": "tcp"
         }
       ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+            "awslogs-group": "updata-ecs-log-group",
+            "awslogs-region": "us-east-2",
+            "awslogs-stream-prefix": "granger-oliver-20ce4f3"
+        }
+    },
       "command": ["/bin/sh -c 'make run'"],
       "entryPoint": ["sh", "-c"],
       "environment": [

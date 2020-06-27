@@ -69,3 +69,11 @@ resource "aws_ecs_service" "updata-ecs-service" {
 	}
 
 }
+
+resource "aws_cloudwatch_log_group" "updata-ecs-log-group" {
+  name = "updata-ecs-log-group"
+
+  tags = {
+    Environment = "${var.environment}"
+  }
+}

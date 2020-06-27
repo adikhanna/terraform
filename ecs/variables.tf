@@ -63,6 +63,10 @@ variable "ecs-load-balancer-name" {
     default = "updata-ecs-load-balancer"
 }
 
+variable "environment" {
+    default = "stg"
+}
+
 variable "load-balancer-name" {
     description = "The name for the autoscaling group for the cluster."
     default     = "updata-ecs-load-balancer"
