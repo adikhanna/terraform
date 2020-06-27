@@ -8,14 +8,14 @@ variable "ecs-key-pair-name" {
     default = "app-cluster"
 }
 
-variable "production_database_name" {
+variable "stg_database_name" {
   description = "appdb"
 }
 
-variable "production_database_username" {
+variable "stg_database_username" {
   description = "appuser"
 }
 
-variable "production_database_password" {
+variable "stg_database_password" {
   description = "updata-password"
 }

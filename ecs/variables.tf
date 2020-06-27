@@ -28,7 +28,7 @@ variable "rds-security-group" {
 }
 
 variable "rds-url" {
-    default = "production-database.ckpzaxvs5lo5.us-east-2.rds.amazonaws.com"
+    default = "stg-database.ckpzaxvs5lo5.us-east-2.rds.amazonaws.com"
 }
 
 variable "rds-username" {

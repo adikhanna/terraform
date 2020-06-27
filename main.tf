@@ -22,11 +22,11 @@ module "s3" {
 
 module "rds" {
   source            = "./rds"
-  environment       = "production"
+  environment       = "stg"
   allocated_storage = "20"
-  database_name     = "${var.production_database_name}"
-  database_username = "${var.production_database_username}"
-  database_password = "${var.production_database_password}"
+  database_name     = "${var.stg_database_name}"
+  database_username = "${var.stg_database_username}"
+  database_password = "${var.stg_database_password}"
   subnet_ids        = ["${module.vpc.subnet1-id}", "${module.vpc.subnet2-id}"]
   vpc_id            = "${module.vpc.id}"
   instance_class    = "db.t2.micro"
@@ -43,7 +43,7 @@ module "ecs" {
     rds-url                     = "${module.rds.rds_address}"
     rds-username                = "${module.rds.rds_user}"
     rds-password                = "${module.rds.rds_password}"
-    rds-dbname                  = "${var.production_database_name}"
+    rds-dbname                  = "${var.stg_database_name}"
     security-group-id           = "${module.vpc.security-group-id}"
     rds-security-group          = "${module.rds.db_access_sg_id}"
     subnet-id-1                 = "${module.vpc.subnet1-id}"
