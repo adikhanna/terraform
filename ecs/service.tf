@@ -2,6 +2,11 @@ resource "aws_alb" "ecs-load-balancer" {
     name                = "${var.load-balancer-name}"
     security_groups     = ["${var.security-group-id}"]
     subnets             = ["${var.subnet-id-1}", "${var.subnet-id-2}"]
+
+    access_logs {
+      bucket  = "updata-lb-access-logs"
+      enabled = true
+  }
 }
 
 resource "aws_alb_target_group" "ecs-target_group" {
