@@ -23,6 +23,19 @@ resource "aws_alb_listener" "alb-listener" {
     }
 }
 
+resource "aws_lb_listener" "https-alb-listener" {
+  load_balancer_arn = "${aws_alb.ecs-load-balancer.arn}"
+  port            = "443"
+  protocol        = "HTTPS"
+  ssl_policy      = "${var.https-ssl-policy}"
+  certificate_arn = "${var.certificate-arn}"
+
+  default_action {
+    target_group_arn = "${aws_alb_target_group.ecs-target_group.arn}"
+    type             = "forward"
+  }
+}
+
 output "ecs-load-balancer-name" {
   value = "${aws_alb.ecs-load-balancer.name}"
 }
