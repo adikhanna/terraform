@@ -4,7 +4,7 @@
       {
         "Effect": "Allow",
         "Principal": {
-          "AWS": "arn:aws:iam::616690186094:root"
+          "AWS": "arn:aws:iam::033677994240:root"
         },
         "Action": "s3:PutObject",
         "Resource": "arn:aws:s3:::updata-lb-access-logs/*"
