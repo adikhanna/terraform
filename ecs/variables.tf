@@ -86,3 +86,8 @@ variable "https-ssl-policy" {
   default     = "ELBSecurityPolicy-2015-05"
   description = "The name of the SSL Policy for the listener"
 }
+
+variable "dns-name" {
+  default = ""
+  description = "The public dns name of the app"
+}
