@@ -8,10 +8,6 @@ variable "ecs-key-pair-name" {
     default = "app-cluster"
 }
 
-/*====
-environment specific variables
-======*/
-
 variable "production_database_name" {
   description = "appdb"
 }
