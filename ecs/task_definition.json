@@ -1,7 +1,7 @@
 [
     {
       "cpu": 256,
-      "image": "616690186094.dkr.ecr.us-east-2.amazonaws.com/app:latest",
+      "image": "616690186094.dkr.ecr.us-east-2.amazonaws.com/app:20ce4f38344e77fdb5fc3b11a286448580a75776",
       "memory": 512,
       "name": "app",
       "networkMode": "awsvpc",
