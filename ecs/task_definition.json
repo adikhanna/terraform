@@ -1,7 +1,7 @@
 [
     {
       "cpu": 256,
-      "image": "616690186094.dkr.ecr.us-east-2.amazonaws.com/app:latest",
+      "image": "616690186094.dkr.ecr.us-east-2.amazonaws.com/app:5f8ffb1a313704f81f4e0ae8d77e1fc668f337c2",
       "memory": 512,
       "name": "app",
       "networkMode": "awsvpc",
@@ -12,6 +12,14 @@
           "protocol": "tcp"
         }
       ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+            "awslogs-group": "updata-ecs-log-group",
+            "awslogs-region": "us-east-2",
+            "awslogs-stream-prefix": "granger-oliver-5f8ffb1"
+        }
+    },
       "command": ["/bin/sh -c 'make run'"],
       "entryPoint": ["sh", "-c"],
       "environment": [

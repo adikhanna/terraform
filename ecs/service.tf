@@ -3,6 +3,11 @@ resource "aws_alb" "ecs-load-balancer" {
     security_groups     = ["${var.security-group-id}"]
     subnets             = ["${var.subnet-id-1}", "${var.subnet-id-2}"]
     dns_name            = "${var.dns-name}"
+
+    access_logs {
+      bucket  = "updata-lb-access-logs"
+      enabled = true
+  }
 }
 
 resource "aws_alb_target_group" "ecs-target_group" {
@@ -41,8 +46,24 @@ output "ecs-load-balancer-name" {
   value = "${aws_alb.ecs-load-balancer.name}"
 }
 
-output "ecs-target-group-arn" {
-  value = "${aws_alb_target_group.ecs-target_group.arn}"
+resource "aws_security_group" "ecs-security-group" {
+  name        = "ecs-security-group"
+  description = "allow inbound access from the ALB only"
+  vpc_id      = "${var.vpc-id}"
+
+  ingress {
+    protocol        = "tcp"
+    from_port       = 5000
+    to_port         = 5000
+    security_groups = ["${var.security-group-id}"]
+  }
+  
+  egress {
+    protocol    = "-1"
+    from_port   = 0
+    to_port     = 0
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
 
 resource "aws_ecs_service" "updata-ecs-service" {
@@ -54,15 +75,23 @@ resource "aws_ecs_service" "updata-ecs-service" {
     launch_type     = "FARGATE"
 
     network_configuration {
-      subnets = ["${var.subnet-id-1}"]
-      security_groups = ["${var.security-group-id}"]
+      subnets = ["${var.subnet-id-3}", "${var.subnet-id-4}"]
+      security_groups = ["${aws_security_group.ecs-security-group.id}"]
       assign_public_ip = true
     }
 
   	load_balancer {
-      target_group_arn  = "${var.ecs-target-group-arn}"
+      target_group_arn  = "${aws_alb_target_group.ecs-target_group.arn}"
       container_port    = 5000
     	container_name    = "app"
 	}
 
+}
+
+resource "aws_cloudwatch_log_group" "updata-ecs-log-group" {
+  name = "updata-ecs-log-group"
+
+  tags = {
+    Environment = "${var.environment}"
+  }
 }

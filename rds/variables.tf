@@ -1,10 +1,10 @@
 variable "environment" {
-  default = "prod"
+  default = "stg"
 }
 
 variable "subnet_ids" {
   type    = list
-  default = ["subnet-0c9ceeab84ec02f67", "subnet-09cd524c6e8eb8263"]
+  default = ["subnet-05090e1ba178aa891", "subnet-0afb1af57fe96aefc"]
 }
 
 variable "vpc_id" {
