@@ -1,7 +1,7 @@
 [
     {
       "cpu": 256,
-      "image": "616690186094.dkr.ecr.us-east-2.amazonaws.com/app:latest",
+      "image": "",
       "memory": 512,
       "name": "app",
       "networkMode": "awsvpc",
@@ -15,12 +15,12 @@
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-            "awslogs-group": "updata-ecs-log-group",
+            "awslogs-group": "test-rds-log-group",
             "awslogs-region": "us-east-2",
-            "awslogs-stream-prefix": "granger-oliver-5f8ffb1"
+            "awslogs-stream-prefix": "test-rds-conn"
         }
     },
-      "command": ["/bin/sh -c 'PGPASSWORD=$DB_PASSWORD psql --dbname=$DB_NAME --host=$DB_HOST --username=$DB_USER'"],
+      "command": ["/bin/sh -c 'psql --dbname=$DB_NAME --host=$DB_HOST --username=$DB_USER --password=$DB_PASSWORD'"],
       "entryPoint": ["sh", "-c"],
       "environment": [
         {
