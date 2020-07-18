@@ -7,32 +7,16 @@ resource "aws_db_subnet_group" "rds_subnet_group" {
   }
 }
 
-resource "aws_security_group" "db_access_sg" {
-  name        = "${var.environment}-db-access-sg"
-  vpc_id      = "${var.vpc_id}"
-
-  tags = {
-    Name        = "${var.environment}-db-access-sg"
-    Environment = "${var.environment}"
-  }
-}
-
 resource "aws_security_group" "rds_sg" {
   name = "${var.environment}-rds-sg"
   vpc_id = "${var.vpc_id}"
 
   ingress {
-      from_port = 0
-      to_port = 0
-      protocol = "-1"
-      self = true
-  }
-
-  ingress {
       from_port = 5432
       to_port   = 5432
       protocol  = "tcp"
-      security_groups = ["${aws_security_group.db_access_sg.id}"]
+      security_groups = ["${var.security-group-id}", 
+                        "${var.ecs-security-group-id}"]
   }
 
   egress {
