@@ -38,3 +38,11 @@ variable "database_username" {
 variable "database_password" {
   default     = "updata-password"
 }
+
+variable "security-group-id" {
+    default = "sg-04a2bab962688abb1"
+}
+
+variable "ecs-security-group-id" {
+    default = "sg-0a5dd714e51881139"
+}
