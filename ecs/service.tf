@@ -2,6 +2,7 @@ resource "aws_alb" "ecs-load-balancer" {
     name                = "${var.load-balancer-name}"
     security_groups     = ["${var.security-group-id}"]
     subnets             = ["${var.subnet-id-1}", "${var.subnet-id-2}"]
+    dns_name            = "${var.dns-name}"
 
     access_logs {
       bucket  = "updata-lb-access-logs"
@@ -28,6 +29,23 @@ resource "aws_alb_listener" "alb-listener" {
     }
 }
 
+resource "aws_lb_listener" "https-alb-listener" {
+  load_balancer_arn = "${aws_alb.ecs-load-balancer.arn}"
+  port            = "443"
+  protocol        = "HTTPS"
+  ssl_policy      = "${var.https-ssl-policy}"
+  certificate_arn = "${var.certificate-arn}"
+
+  default_action {
+    target_group_arn = "${aws_alb_target_group.ecs-target_group.arn}"
+    type             = "forward"
+  }
+}
+
+output "ecs-load-balancer-name" {
+  value = "${aws_alb.ecs-load-balancer.name}"
+}
+
 resource "aws_security_group" "ecs-security-group" {
   name        = "ecs-security-group"
   description = "allow inbound access from the ALB only"
@@ -39,7 +57,7 @@ resource "aws_security_group" "ecs-security-group" {
     to_port         = 5000
     security_groups = ["${var.security-group-id}"]
   }
-
+  
   egress {
     protocol    = "-1"
     from_port   = 0

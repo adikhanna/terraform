@@ -76,3 +76,18 @@ variable "target-group-name" {
     description = "The name for the target group for the cluster."
     default     = "updata-ecs-target-group"
 }
+
+variable "certificate-arn" {
+  default     = ""
+  description = "The ARN of the default SSL certificate for HTTPS listener"
+}
+
+variable "https-ssl-policy" {
+  default     = "ELBSecurityPolicy-2015-05"
+  description = "The name of the SSL Policy for the listener"
+}
+
+variable "dns-name" {
+  default = ""
+  description = "The public dns name of the app"
+}
